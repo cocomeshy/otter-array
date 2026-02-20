@@ -1,0 +1,117 @@
+use memory;
+
+/**
+ * Checks whether an integer array contains the given value.
+ * Performs a linear scan from index 0 to data.len - 1.
+ * @param data   The array to search
+ * @param value  The value to find
+ * @returns      true if the value exists in the array, false otherwise
+ */
+~> contains(data:arr<int>, value:int) -> bool {
+  flow i:int = 0;
+  loop (i < data.len) {
+    match (data[i] == value) {
+      true -> { return true; };
+      _ -> {};
+    }
+    i += 1;
+  }
+  return false;
+}
+
+/**
+ * Returns the index of the first occurrence of a value, or -1 if absent.
+ * @param data   The array to search
+ * @param value  The value to locate
+ * @returns      Zero-based index, or -1
+ */
+~> find(data:arr<int>, value:int) -> int {
+  flow i:int = 0;
+  loop (i < data.len) {
+    match (data[i] == value) {
+      true -> { return i; };
+      _ -> {};
+    }
+    i += 1;
+  }
+  return -1;
+}
+
+/**
+ * Reverses an integer array in-place using a two-pointer swap.
+ * @param data  The array to reverse
+ */
+~> reverse(data:arr<int>) -> void {
+  flow left:int = 0;
+  flow right:int = data.len - 1;
+  loop (left < right) {
+    rock tmp:int = data[left];
+    data[left] = data[right];
+    data[right] = tmp;
+    left += 1;
+    right -= 1;
+  }
+}
+
+/**
+ * Returns the sum of all elements in an integer array.
+ * Returns 0 for empty arrays.
+ * @param data  The array to sum
+ * @returns     The total sum
+ */
+~> sum(data:arr<int>) -> int {
+  flow total:int = 0;
+  flow i:int = 0;
+  loop (i < data.len) {
+    total += data[i];
+    i += 1;
+  }
+  return total;
+}
+
+/**
+ * Returns the smallest value in an integer array.
+ * The array must contain at least one element.
+ * @param data  The array to search
+ * @returns     The minimum value
+ */
+~> min(data:arr<int>) -> int {
+  flow result:int = data[0];
+  flow i:int = 1;
+  loop (i < data.len) {
+    match (data[i] < result) {
+      true -> { result = data[i]; };
+      _ -> {};
+    }
+    i += 1;
+  }
+  return result;
+}
+
+/**
+ * Returns the largest value in an integer array.
+ * The array must contain at least one element.
+ * @param data  The array to search
+ * @returns     The maximum value
+ */
+~> max(data:arr<int>) -> int {
+  flow result:int = data[0];
+  flow i:int = 1;
+  loop (i < data.len) {
+    match (data[i] > result) {
+      true -> { result = data[i]; };
+      _ -> {};
+    }
+    i += 1;
+  }
+  return result;
+}
+
+/**
+ * Returns the number of elements in an integer array.
+ * @param data  The array
+ * @returns     Element count
+ */
+~> length(data:arr<int>) -> int {
+  return data.len;
+}

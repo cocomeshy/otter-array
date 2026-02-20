@@ -1,0 +1,17 @@
+rune 1
+name "array"
+version "1.0.0"
+description "Array search, transform, and aggregation utilities"
+author "cocomeshy"
+license "MIT"
+entry array.otter
+
+use "memory" want "1.0.0"
+
+export contains
+export find
+export reverse
+export sum
+export min
+export max
+export length
