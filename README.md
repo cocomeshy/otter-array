@@ -1,118 +1,103 @@
-﻿# array
+# otter-array
 
-Array search, transform, and aggregation utilities for Otter.
+Array helpers: search, transform, and aggregate arr<int>.
 
-## API Reference
-
-### `array.contains(data:arr<int>, value:int) -> bool`
-
-Check if an array contains a specific value.
-
-- **Parameters:**
-  - `data` — Array to search
-  - `value` — Value to look for
-- **Returns:** `true` if found, `false` otherwise
-
-```otter
-rock nums:arr<int> = {1, 2, 3, 4, 5};
-rock has3:bool = array.contains(nums, 3);  // true
-rock has9:bool = array.contains(nums, 9);  // false
-```
-
----
-
-### `array.find(data:arr<int>, value:int) -> int`
-
-Find the index of the first occurrence of a value.
-
-- **Parameters:**
-  - `data` — Array to search
-  - `value` — Value to find
-- **Returns:** Zero-based index, or `-1` if not found
-
-```otter
-rock idx:int = array.find({10, 20, 30}, 20);  // 1
-rock missing:int = array.find({10, 20, 30}, 99);  // -1
-```
-
----
-
-### `array.reverse(data:arr<int>) -> void`
-
-Reverse the elements of an array in place.
-
-- **Parameters:**
-  - `data` — Array to reverse (must be `flow`)
-
-```otter
-flow nums:arr<int> = {1, 2, 3};
-array.reverse(nums);
-// nums is now {3, 2, 1}
-```
-
----
-
-### `array.sum(data:arr<int>) -> int`
-
-Sum all elements of an integer array.
-
-- **Parameters:**
-  - `data` — Array of integers
-- **Returns:** Sum of all elements
-
-```otter
-rock total:int = array.sum({10, 20, 30});  // 60
-```
-
----
-
-### `array.min(data:arr<int>) -> int`
-
-Find the minimum value in an array.
-
-- **Parameters:**
-  - `data` — Non-empty array of integers
-- **Returns:** The smallest element
-
-```otter
-rock smallest:int = array.min({5, 2, 8, 1, 9});  // 1
-```
-
----
-
-### `array.max(data:arr<int>) -> int`
-
-Find the maximum value in an array.
-
-- **Parameters:**
-  - `data` — Non-empty array of integers
-- **Returns:** The largest element
-
-```otter
-rock largest:int = array.max({5, 2, 8, 1, 9});  // 9
-```
-
----
-
-### `array.length(data:arr<int>) -> int`
-
-Get the number of elements in an array.
-
-- **Parameters:**
-  - `data` — Array
-- **Returns:** Element count
-
-```otter
-rock len:int = array.length({1, 2, 3});  // 3
-```
-
-## Dependencies
-
-- `memory` — for internal operations
+Part of the Otter standard library. Otter is a compiled systems language with no garbage collector and no libc dependency (pthread for threading is the one exception); everything else goes through raw syscalls and DLL imports.
 
 ## Install
 
+In your `otter.nest`:
+
+```nest
+deps {
+  use "array" want "1.0.0"
+}
 ```
-otter pkg add array
+
+Then:
+
+```sh
 otter pkg pull
 ```
+
+## API reference
+
+### `array.contains(data:arr<int>, value:int) -> bool`
+
+Checks whether an integer array contains the given value. Performs a linear scan from index 0 to data.len - 1.
+
+Parameters:
+
+- `data`: The array to search
+- `value`: The value to find
+
+Returns: true if the value exists in the array, false otherwise
+
+### `array.find(data:arr<int>, value:int) -> int`
+
+Returns the index of the first occurrence of a value, or -1 if absent.
+
+Parameters:
+
+- `data`: The array to search
+- `value`: The value to locate
+
+Returns: Zero-based index, or -1
+
+### `array.reverse(data:arr<int>)`
+
+Reverses an integer array in-place using a two-pointer swap.
+
+Parameters:
+
+- `data`: The array to reverse
+
+### `array.sum(data:arr<int>) -> int`
+
+Returns the sum of all elements in an integer array. Returns 0 for empty arrays.
+
+Parameters:
+
+- `data`: The array to sum
+
+Returns: The total sum
+
+### `array.min(data:arr<int>) -> int`
+
+Returns the smallest value in an integer array. The array must contain at least one element.
+
+Parameters:
+
+- `data`: The array to search
+
+Returns: The minimum value
+
+### `array.max(data:arr<int>) -> int`
+
+Returns the largest value in an integer array. The array must contain at least one element.
+
+Parameters:
+
+- `data`: The array to search
+
+Returns: The maximum value
+
+### `array.length(data:arr<int>) -> int`
+
+Returns the number of elements in an integer array.
+
+Parameters:
+
+- `data`: The array
+
+Returns: Element count
+
+---
+
+## Dependencies
+
+memory (for internal allocation).
+
+## License
+
+MIT.

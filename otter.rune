@@ -1,7 +1,7 @@
 rune 1
 name "array"
 version "1.0.0"
-description "Standard library array package"
+description "Array helpers: search, transform, and aggregate arr<int>"
 author "cocomeshy"
 license "MIT"
 use "memory" want "1.0.0"
